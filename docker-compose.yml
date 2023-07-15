@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  redis:
+    image: redis/redis-stack:latest
+    ports:
+      - '6379:6379'
+      - '8500:8001'
+    volumes:
+      - cloud-charging-redis-data:/data
+
+volumes:
+  cloud-charging-redis-data:
+

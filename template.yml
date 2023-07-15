@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application.
+Resources:
+  MyLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.chargeRequestRedis
+      Runtime: nodejs14.x
+      CodeUri: .
+      Timeout: 30
+      Environment:
+        Variables:
+          ENDPOINT: 172.17.0.1
+          PORT: "6500"
+      Events:
+        MyApi:
+          Type: Api
+          Properties:
+            Path: /charge-request
+            Method: post

@@ -1,0 +1,17 @@
+config:
+  target: "http://127.0.0.1:4000"
+  phases:
+    - name: Testing phase
+      duration: 20
+      arrivalRate: 20
+      rampTo: 30
+  defaults:
+    headers:
+      Content-Type: "application/json"
+scenarios:
+  - flow:
+      - post:
+          url: "/charge-request"
+          json:
+            serviceType: "voice"
+            unit: 2

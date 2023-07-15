@@ -1,0 +1,24 @@
+config:
+  target: "https://pgpaygwunwfqoyel3zica5vufq0rgijp.lambda-url.us-east-1.on.aws"
+  phases:
+    - name: Warm up phase
+      duration: 60
+      arrivalRate: 5
+      rampTo: 10
+    - name: Ramp up to peak load
+      duration: 60
+      arrivalRate: 10
+      rampTo: 50
+    - name: Sustained peak load
+      duration: 300
+      rampTo: 50
+  defaults:
+    headers:
+      Content-Type: "application/json"
+scenarios:
+  - flow:
+      - post:
+          url: "/"
+          json:
+            serviceType: "voice"
+            unit: 2
